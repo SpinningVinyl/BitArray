@@ -32,6 +32,5 @@ public class PrimeSieve {
         int n = Integer.parseInt(args[0]);
         System.out.println("Calculating the number of primes up to " + n);
         System.out.println(countPrimes(n));
-
     }
 }
