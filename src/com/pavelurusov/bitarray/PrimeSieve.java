@@ -4,12 +4,9 @@ public class PrimeSieve {
 
     private static int countPrimes(int n) {
 
-        int count = 0;
-
         BitArray boolSet = new BitArray(n + 1);
         boolSet.setAll();
-        boolSet.clear(0);
-        boolSet.clear(1);
+        boolSet.clear(0, 2);
         for (int i = 2; i <= Math.sqrt(n); i++) {
             int j = i * i;
             while (j <= n) {
@@ -18,14 +15,7 @@ public class PrimeSieve {
             }
         }
 
-        for (Boolean b: boolSet) {
-            if (b) {
-                count++;
-            }
-        }
-
-        return count;
-
+        return boolSet.cardinality();
     }
 
     public static void main(String[] args) {
