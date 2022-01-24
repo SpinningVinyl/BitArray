@@ -28,63 +28,63 @@ public class BitArray implements Iterable<Boolean> {
         this.size = bitArray.size;
     }
 
-    // get the bit at the specified position. 1 = true, 0 = false
-    public boolean get(int position) {
-        checkPosition(position);
+    // get the bit at the specified index. 1 = true, 0 = false
+    public boolean get(int index) {
+        checkIndex(index);
         // the bitwise AND operation will return 1 only if the bit is set
-        return (store[position / 8] & (1 << (position % 8))) != 0;
+        return (store[index / 8] & (1 << (index % 8))) != 0;
     }
 
-    // set the bit at the specified position
-    public void set(int position) {
-        checkPosition(position);
-        // the bit at the specified position is ORed with 1 to set it
-        store[position / 8] |= 1 << (position % 8);
+    // set the bit at the specified index
+    public void set(int index) {
+        checkIndex(index);
+        // the bit at the specified index is ORed with 1 to set it
+        store[index / 8] |= 1 << (index % 8);
     }
 
-    // set all bits from the specified fromPosition (inclusive) to toPosition (exclusive)
-    // throws IllegalArgumentException if (fromPosition > toPosition)
-    public void set(int fromPosition, int toPosition) {
-        if (fromPosition > toPosition) {
-            throw new IllegalArgumentException("fromPosition is higher than toPosition");
+    // set all bits from the specified fromIndex (inclusive) to toIndex (exclusive)
+    // throws IllegalArgumentException if (fromIndex > toIndex)
+    public void set(int fromIndex, int toIndex) {
+        if (fromIndex > toIndex) {
+            throw new IllegalArgumentException("fromIndex is higher than toIndex");
         }
-        for (int i = fromPosition; i < toPosition; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             set(i);
         }
     }
 
-    // clear the bit at the specified position
-    public void clear(int position) {
-        checkPosition(position);
-        // the bit at the specified position is ANDed with 0 to clear it
-        store[position / 8] &= ALL_SET - (1 << (position % 8));
+    // clear the bit at the specified index
+    public void clear(int index) {
+        checkIndex(index);
+        // the bit at the specified index is ANDed with 0 to clear it
+        store[index / 8] &= ALL_SET - (1 << (index % 8));
     }
 
-    // clear all bits from the specified fromPosition (inclusive) to toPosition (exclusive)
-    // throws IllegalArgumentException if (fromPosition > toPosition)
-    public void clear (int fromPosition, int toPosition) {
-        if (fromPosition > toPosition) {
-            throw new IllegalArgumentException("fromPosition is higher than toPosition");
+    // clear all bits from the specified fromIndex (inclusive) to toIndex (exclusive)
+    // throws IllegalArgumentException if (fromIndex > toIndex)
+    public void clear (int fromIndex, int toIndex) {
+        if (fromIndex > toIndex) {
+            throw new IllegalArgumentException("fromIndex is higher than toIndex");
         }
-        for (int i = fromPosition; i < toPosition; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             clear(i);
         }
     }
 
-    // flip the bit at the specified position
-    public void flip(int position) {
-        checkPosition(position);
-        // the bit at the specified position is XORed with 1 to flip it
-        store[position / 8] ^= 1 << (position % 8);
+    // flip the bit at the specified index
+    public void flip(int index) {
+        checkIndex(index);
+        // the bit at the specified index is XORed with 1 to flip it
+        store[index / 8] ^= 1 << (index % 8);
     }
 
-    // flip all bits from the specified fromPosition (inclusive) to toPosition (exclusive)
-    // throws IllegalArgumentException if (fromPosition > toPosition)
-    public void flip(int fromPosition, int toPosition) {
-        if (fromPosition > toPosition) {
-            throw new IllegalArgumentException("fromPosition is higher than toPosition");
+    // flip all bits from the specified fromIndex (inclusive) to toIndex (exclusive)
+    // throws IllegalArgumentException if (fromIndex > toIndex)
+    public void flip(int fromIndex, int toIndex) {
+        if (fromIndex > toIndex) {
+            throw new IllegalArgumentException("fromIndex is higher than toIndex");
         }
-        for (int i = fromPosition; i < toPosition; i++) {
+        for (int i = fromIndex; i < toIndex; i++) {
             flip(i);
         }
     }
@@ -155,9 +155,9 @@ public class BitArray implements Iterable<Boolean> {
         };
     }
 
-    private void checkPosition (int position) {
-        if(position < 0 || position >= size) {
-            throw new IndexOutOfBoundsException(String.valueOf(position));
+    private void checkIndex(int index) {
+        if(index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(String.valueOf(index));
         }
     }
 }
