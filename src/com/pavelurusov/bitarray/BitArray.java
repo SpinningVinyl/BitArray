@@ -148,8 +148,7 @@ public class BitArray implements Iterable<Boolean> {
             @Override
             public Boolean next() {
                 if (hasNext()) {
-                    position++;
-                    return get(position - 1);
+                    return get(position++);
                 } else throw new NoSuchElementException();
             }
         };
